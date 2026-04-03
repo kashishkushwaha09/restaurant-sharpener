@@ -10,8 +10,7 @@ function App() {
     <>
      <Layout>
        <div>
-         <h1>Welcome to MyApp</h1>
-         <p>This is the main content area.</p>
+         
        </div>
      </Layout>
     </>
