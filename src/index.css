@@ -8,4 +8,19 @@ body{
 .add-btn{
     background-color: #771f08 !important;
     color: white !important;
+    transition: all 0.3s ease;
+}
+.add-btn:hover {
+  background-color: #5a1706 !important; /* darker */
+  transform:scale(1.03);
+}
+.close-btn{
+    background-color: transparent !important;
+    /* border:1px solid #771f08 !important; */
+     transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background-color: rgb(245, 243, 243) !important;
+  transform:scale(1.03);
 }
