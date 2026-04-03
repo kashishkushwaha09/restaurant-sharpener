@@ -4,3 +4,8 @@ body{
 .amount{
     color:#771f08;
 }
+
+.add-btn{
+    background-color: #771f08 !important;
+    color: white !important;
+}
