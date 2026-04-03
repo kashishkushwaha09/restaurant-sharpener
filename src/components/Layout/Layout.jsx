@@ -4,13 +4,16 @@ import styles from './layout.module.css'
 import HeroSection from './HeroSection'
 import CartModal from './CartModal'
 import CartItems from '../Cart/CartItems'
+import { useState } from 'react'
 const Layout = ({ children }) => {
+  const [showCart, setShowCart] = useState(false);
   return (
     <>
-      <Header />
+      <Header onShowCart={() => setShowCart(true)} />
+        {showCart && 
       <CartModal>
-        <CartItems />
-      </CartModal>
+        <CartItems onClose={() => setShowCart(false)}  />
+      </CartModal>}
       {/* header image  */}
       <HeroSection />
       {children}

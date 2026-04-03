@@ -2,8 +2,10 @@
     background-color: #771f08;
 }
 .header .cartBtn{
-     background-color: #3f1200;
+     background-color: #3f1200; 
+     border: none !important;
 }
 .header .counter{
     background-color: #a03617;
 }
+

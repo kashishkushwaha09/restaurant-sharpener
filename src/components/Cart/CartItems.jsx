@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CartItems = () => {
+const CartItems = ({ onClose }) => {
   return (
     <div className="bg-white p-4 rounded-3" style={{ width: "400px" }}>
           <h6 className='text-muted fw-semibold'>Shushi</h6 >
@@ -10,7 +10,9 @@ const CartItems = () => {
           </div>
           
           <div className="d-flex justify-content-end gap-3">
-            <button className="btn close-btn rounded-pill px-4 py-0 fw-medium shadow border">Close</button>
+            <button className="btn close-btn rounded-pill px-4 py-0 fw-medium shadow border" onClick={onClose}>
+              Close
+            </button>
             <button className="btn add-btn rounded-pill px-4 py-1">Order</button>
           </div>
         </div>
