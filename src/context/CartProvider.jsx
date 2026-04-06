@@ -18,12 +18,26 @@ const CartProvider = ({ children }) => {
         setQuantity((prevQuantity) => prevQuantity + parseInt(quantity));
     };
     const removeItemFromCart = (id) => {
-        setCartItems((prevItems) => prevItems.filter(item => item.id != id));
-        const itemToRemove = cartItems.find(item => item.id == id);
-        if (itemToRemove) {
-            setTotalAmount((prevAmount) => prevAmount - itemToRemove.price * itemToRemove.quantity);
-            setQuantity((prevQuantity) => prevQuantity - itemToRemove.quantity);
-        }
+        let removedItemPrice=0;
+        setCartItems((prev)=>{
+            let updated= prev.map((item)=>{
+            if(item.id === id){
+               removedItemPrice=item.price;
+               if(item.quantity > 1){
+             return {
+                    ...item, quantity: item.quantity-1
+                }
+               }else{
+                return null;
+               }
+               
+            }
+            return item;
+        }).filter(Boolean);
+        return updated;
+        })
+         setTotalAmount((prevAmount) => prevAmount - removedItemPrice);
+         setQuantity((prevQuantity) => prevQuantity - 1);
     };
     useEffect(() => {
         const storedCart = localStorage.getItem("cart");
