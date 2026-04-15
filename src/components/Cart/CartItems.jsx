@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
-import { CartContext } from '../../context/CartContext';
+
 import CartItem from './CartItem';
+import { CartContext } from '../../context/meal/CartContext';
 
 const CartItems = ({ onClose}) => {
     const { items, totalAmount} = useContext(CartContext);

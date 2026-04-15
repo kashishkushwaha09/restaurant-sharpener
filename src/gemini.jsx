@@ -69,6 +69,79 @@ Rules:
     return null;
   }
 };
+
+export const getProductRecommendations = async (cartItems, products) => {
+  try {
+  const prompt = `
+You are an AI product recommendation engine.
+
+STRICT RULES (MUST FOLLOW):
+- Use ONLY the given data
+- Do NOT create new products
+- Recommend ONLY from the provided products list
+- Return EXACT objects from products array
+- Output MUST be a valid JSON array
+- Output MUST start with [ and end with ]
+- Do NOT include any explanation
+- Do NOT include any text before or after JSON
+- Do NOT include markdown (no \`\`\`)
+
+Cart Items:
+${JSON.stringify(cartItems)}
+
+Available Products:
+${JSON.stringify(products)}
+
+Task:
+- Recommend top 5 products only
+- Based on similar name important (brand/type) if already in cart exclude it
+- Based on price range
+- Based on quantity preference
+
+Output format (STRICT):
+[
+  {
+    "id": number,
+    "name": string,
+    "desc": string,
+    "price": number,
+    "large": number,
+    "medium": number,
+    "small": number
+  }
+]
+`;
+
+    const response = await groq.chat.completions.create({
+      model: "llama-3.1-8b-instant",
+      messages: [
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+    });
+
+    const rawText = response.choices[0].message.content;
+
+    console.log("raw response:", rawText);
+
+    const cleanText = (rawText || "")
+      .replace(/```json/g, "")
+      .replace(/```/g, "")
+      .trim();
+
+    const data = JSON.parse(cleanText);
+
+    console.log("recommended products:", data);
+
+    return data;
+
+  } catch (error) {
+    console.error("AI recommendation error:", error);
+    return [];
+  }
+};
   
   // import { GoogleGenAI } from "@google/genai";
 

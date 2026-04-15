@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
-import { CartContext } from '../../context/CartContext';
+import { CartContext } from '../../context/meal/CartContext';
+
 
 const MealItem = ({ meal }) => {
     const [quantity, setQuantity] = useState(meal?.quantity || 1);

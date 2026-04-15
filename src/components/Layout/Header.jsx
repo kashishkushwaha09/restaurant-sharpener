@@ -2,7 +2,8 @@ import { Navbar, Nav, Container } from "react-bootstrap";
 import { FaShoppingCart } from "react-icons/fa";
 import styles from "./layout.module.css";
 import {useContext } from "react";
-import { CartContext } from "../../context/CartContext";
+import { CartContext } from "../../context/meal/CartContext";
+
 const Header = ({ onShowCart }) => {
   const { quantity } = useContext(CartContext);
      const cartCount = 3;
