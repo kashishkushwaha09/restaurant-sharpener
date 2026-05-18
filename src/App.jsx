@@ -1,20 +1,23 @@
+import { useState } from 'react'
 import './App.css'
-import Layout from './components/Layout/Layout'
-import Home from './pages/Home'
-import CartProvider from './context/meal/CartProvider'
-import ShoesProvider from './context/shoes/ShoesProvider'
-import Shoes from './pages/Shoes'
+import Candidates from './components/Candidates'
+import ChatBot from './components/Chatbot'
+import MonitorLayout from './components/Layout/MonitorLayout'
+import { ElectionProvider } from './context/ElectionContext'
+
 
 function App() {
-  
+ 
 
   return (
-    <ShoesProvider>
-    
-        <Shoes />
-    
-    </ShoesProvider>
-    
+     <ElectionProvider>
+       <MonitorLayout/>
+       <Candidates/>
+
+       <ChatBot/>
+     </ElectionProvider>
+   
+
   )
 }
 

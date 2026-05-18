@@ -32,3 +32,53 @@ background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, F
   background-color: rgb(245, 243, 243) !important;
   transform:scale(1.03);
 }
+.chatbot-container {
+  width: 350px;
+  height: 500px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  background-color: white;
+}
+
+.chat-area {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 0;
+}
+
+.user-message {
+  background-color: #2563eb;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  align-self: flex-end;
+  max-width: 80%;
+}
+
+.bot-message {
+  background-color: #f1f5f9;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  max-width: 80%;
+}
+
+.input-area {
+  display: flex;
+  gap: 10px;
+}
+
+.input-area input {
+  flex: 1;
+  padding: 10px;
+}
+
+.input-area button {
+  padding: 10px 15px;
+  cursor: pointer;
+}

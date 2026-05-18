@@ -5,7 +5,65 @@ const groq = new Groq({
   apiKey: import.meta.env.VITE_GEMINI_API_KEY,
   dangerouslyAllowBrowser: true,
 });
+const predefinedAnswers = {
+  "how to vote":
+    "Select a candidate and click submit vote.",
 
+  "can i vote twice":
+    "No, one student can vote only once.",
+
+  "how are winners decided":
+    "Candidate with maximum votes wins.",
+};
+export const askAI=async(message,candidates)=>{
+try{
+const text =message.toLowerCase();
+if(predefinedAnswers[text]){
+  return predefinedAnswers[text];
+}
+ const prompt = `
+You are an AI assistant for a Class Monitor Voting Website.
+
+Your job is to answer user questions using the candidate data provided below.
+
+Rules:
+- Give short, clear, and accurate answers in text only.
+- Answer only based on the provided candidate data.
+- Do not make up information.
+- If information is not available, say:
+  "I don't have enough information for that."
+- Return only plain text response.
+- Do not use markdown, bullet points, or special formatting.
+
+Candidate Data:
+${JSON.stringify(candidates)}
+
+User Question:
+${message}
+`;
+const response=await groq.chat.completions.create({
+      model: "llama-3.1-8b-instant", 
+      messages: [
+        {
+          role: "system",
+          content: prompt,
+        },
+         {
+          role: "user",
+          content: message,
+        },
+      ],
+    });
+      return response.choices[0].message.content.trim();
+}catch(error){
+    console.error(
+      "AI recommendation error:",
+      error
+    );
+
+    return "Something went wrong.";
+}
+}
 export const extractExpense = async (text) => {
   try {
     const today = new Date().toISOString().split("T")[0];
